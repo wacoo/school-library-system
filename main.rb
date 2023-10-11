@@ -29,7 +29,16 @@ rental2 = Rental.new('2022-04-14', sla, abebe)
 rental3 = Rental.new('2023-04-03', sla, zeritu)
 rental4 = Rental.new('2023-07-02', notw, zeritu)
 
+got = Book.new('Game of thrones', 'Goeorge R.R Martin')
+
+rental5 = Rental.new('2023-08-24', got, abebe)
+abebe.add_rental(rental5)
+got.add_rental(rental5)
+
 puts "#{rental1.person.name} => #{rental1.book.title}"
 puts "#{rental2.person.name} => #{rental2.book.title}"
 puts "#{rental3.person.name} => #{rental3.book.title}"
 puts "#{rental4.person.name} #{rental4.book.title}"
+
+puts "#{abebe.name} #{abebe.rentals[0].book.title}"
+puts "#{got.title} #{got.rentals[0].person.name}"
