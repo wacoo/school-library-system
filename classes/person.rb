@@ -26,7 +26,6 @@ class Person < Nameable
 
   def add_rental(rental)
     @rentals << rental
-    #rental.person = self  unless rental.person.include?(self)
   end
 
   private

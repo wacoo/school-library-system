@@ -10,6 +10,5 @@ class Book
 
   def add_rental(rental)
     @rentals << rental
-    #rental.book = self  unless rental.book.include?(self)
   end
 end
