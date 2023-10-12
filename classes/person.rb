@@ -1,5 +1,6 @@
 require('securerandom')
 require_relative('nameable')
+require_relative('rental')
 
 class Person < Nameable
   attr_accessor :name, :age
@@ -24,7 +25,8 @@ class Person < Nameable
     @name
   end
 
-  def add_rental(rental)
+  def add_rental(date, book)
+    rental = Rental.new(date, book, self)
     @rentals << rental
   end
 

@@ -31,9 +31,8 @@ rental4 = Rental.new('2023-07-02', notw, zeritu)
 
 got = Book.new('Game of thrones', 'Goeorge R.R Martin')
 
-rental5 = Rental.new('2023-08-24', got, abebe)
-abebe.add_rental(rental5)
-got.add_rental(rental5)
+abebe.add_rental('2023-08-24', got)
+got.add_rental('2023-08-24', abebe)
 
 puts "#{rental1.person.name} => #{rental1.book.title}"
 puts "#{rental2.person.name} => #{rental2.book.title}"
