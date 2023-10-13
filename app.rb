@@ -57,7 +57,7 @@ def list_all_rentals(renter_id = 0)
     end
   else
     rental_instances.each do |rental|
-      puts "Date: #{rental.date}, #{rental.book.title} by #{rental.person.name}" if renter_id == rental.person.id
+      puts "Date: #{rental.date}, Book title: #{rental.book.title}, Rented by: #{rental.person.name}" if renter_id == rental.person.id
     end
   end
 end
@@ -98,7 +98,12 @@ def create_person
   input = gets.chomp.to_i
   puts ''
   params = user_input_person(input)
-  Student.new(params[2], params[1], params[0], parent_permission: params[3])
+  if input == 1
+    Student.new(params[2], params[1], params[0], parent_permission: params[3])
+  elsif input == 2
+    Teacher.new(params[2], params[1], params[0], parent_permission: params[3])
+  end
+  list_all_people
   puts ''
   puts 'Person created successfully!'
   puts ''
