@@ -57,7 +57,9 @@ def list_all_rentals(renter_id = 0)
     end
   else
     rental_instances.each do |rental|
-      puts "Date: #{rental.date}, Book title: #{rental.book.title}, Rented by: #{rental.person.name}" if renter_id == rental.person.id
+      if renter_id == rental.person.id
+        puts "Date: #{rental.date}, Book title: #{rental.book.title}, Rented by: #{rental.person.name}"
+      end
     end
   end
 end
