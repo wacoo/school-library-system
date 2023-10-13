@@ -159,22 +159,6 @@ def create_rental
   puts ''
 end
 
-def prompt_main
-  puts ''
-  puts '=================================================='
-  puts '=   PLEASE CHOOSE AN OPTION BY TYPING A NUMBER   ='
-  puts '=================================================='
-  puts ''
-  puts '  1 - List of all books'
-  puts '  2 - List of all people'
-  puts '  3 - Create a person'
-  puts '  4 - Create a book'
-  puts '  5 - Create a rental'
-  puts '  6 - List od all rentals for a given id'
-  puts '  7 - Exit'
-  print '  :> '
-end
-
 def handle_case(input)
   actions = {
     1 => method(:list_all_books),
@@ -205,14 +189,24 @@ end
 
 def main
   loop do
-    prompt_main
+    puts ''
+    puts '=================================================='
+    puts '=   PLEASE CHOOSE AN OPTION BY TYPING A NUMBER   ='
+    puts '=================================================='
+    puts ''
+    puts '  1 - List of all books'
+    puts '  2 - List of all people'
+    puts '  3 - Create a person'
+    puts '  4 - Create a book'
+    puts '  5 - Create a rental'
+    puts '  6 - List od all rentals for a given id'
+    puts '  7 - Exit'
+    print '  :> '
     input = gets.chomp.to_i
     handle_case(input)
     puts ''
     puts '**************************************************'
   end
-  puts ''
-  puts ''
+  puts '\n\n'
 end
-
 main
