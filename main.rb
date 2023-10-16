@@ -1,43 +1,41 @@
-require_relative('classes/person')
-require_relative('classes/student')
-require_relative('classes/classroom')
-require_relative('classes/book')
-require_relative('classes/rental')
+#!/usr/bin/env ruby
+require_relative('app')
 
-john = Student.new('Classroom 101', 'John Smith', 16, parent_permission: false)
+def self.handle_case(input, app)
+  actions = {
+    1 => app.method(:list_all_books),
+    2 => app.method(:list_all_people),
+    3 => app.method(:create_person),
+    4 => app.method(:create_book),
+    5 => app.method(:create_rental),
+    6 => app.method(:handle_rental_list),
+    7 => app.method(:exit)
+  }
+  action = actions[input]
+  action ? action.call : handle_wrong_input
+end
 
-lily = Student.new('Classroom 101', 'Jane Smith', 26, parent_permission: false)
+def main
+  app = App.new
+  loop do
+    puts '=================================================='
+    puts '=   PLEASE CHOOSE AN OPTION BY TYPING A NUMBER   ='
+    puts '=================================================='
+    puts ''
+    puts '  1 - List of all books'
+    puts '  2 - List of all people'
+    puts '  3 - Create a person'
+    puts '  4 - Create a book'
+    puts '  5 - Create a rental'
+    puts '  6 - List od all rentals for a given id'
+    puts '  7 - Exit'
+    print '  :> '
+    input = gets.chomp.to_i
+    handle_case(input, app)
+    puts ''
+    puts '**************************************************'
+  end
+  puts '\n\n'
+end
 
-d6 = Classroom.new('6D')
-
-d6.add_student(john)
-d6.add_student(lily)
-
-puts d6.students
-puts "#{john.name} #{john.classroom.label}"
-puts "#{lily.name} #{lily.classroom.label}"
-
-notw = Book.new('Name of the Wind', 'Patrick Rothfuss')
-sla = Book.new('Stormlight Archives', 'Brandon Sanderson')
-
-abebe = Person.new(34, 'Abebe', parent_permission: true)
-zeritu = Person.new(50, 'Zeritu', parent_permission: true)
-
-rental1 = Rental.new('2021-09-12', notw, abebe)
-rental2 = Rental.new('2022-04-14', sla, abebe)
-
-rental3 = Rental.new('2023-04-03', sla, zeritu)
-rental4 = Rental.new('2023-07-02', notw, zeritu)
-
-got = Book.new('Game of thrones', 'Goeorge R.R Martin')
-
-abebe.add_rental('2023-08-24', got)
-got.add_rental('2023-08-24', abebe)
-
-puts "#{rental1.person.name} => #{rental1.book.title}"
-puts "#{rental2.person.name} => #{rental2.book.title}"
-puts "#{rental3.person.name} => #{rental3.book.title}"
-puts "#{rental4.person.name} #{rental4.book.title}"
-
-puts "#{abebe.name} #{abebe.rentals[0].book.title}"
-puts "#{got.title} #{got.rentals[0].person.name}"
+main

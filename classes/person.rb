@@ -7,7 +7,7 @@ class Person < Nameable
   attr_reader :id, :rentals
 
   def initialize(age, name = 'Unknown', parent_permission: true)
-    @id = SecureRandom.uuid
+    @id = SecureRandom.random_number(9000) + 1000
     @name = name
     @age = age
     @parent_permission = parent_permission
