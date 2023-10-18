@@ -14,4 +14,9 @@ class Student < Person
     @classroom = classroom
     classroom.students << self unless classroom.students.include?(self)
   end
+
+  def new_student(_age, _name, _classroom, _parent_permission)
+    student = Student.new(params[2], params[1], params[0], parent_permission: params[3])
+    @people << student
+  end
 end
